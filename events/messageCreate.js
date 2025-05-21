@@ -46,7 +46,7 @@ export async function execute(message) {
     const responses = TARGET_IDS.map(id => {
       const userData = data[id] ?? { count: 0, date: getTodayDateStr() };
       const left = messagesLeft(userData);
-      return `${data[id]?.username || `User ${id}`} has ${left} messages left today, what a fucking bitch`;
+      return `${data[id]?.username} has ${left} messages left today, what a fucking bitch`;
     });
     message.channel.send(responses.join('\n'));
     return;
