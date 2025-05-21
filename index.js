@@ -11,4 +11,4 @@ const client = new Client({
 
 loadEvents(client);
 
-client.login(DISCORD_TOKEN);
+client.login(process.env.DISCORD_TOKEN);
