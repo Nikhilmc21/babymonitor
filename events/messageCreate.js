@@ -42,15 +42,38 @@ export async function execute(message) {
 
   const userId = message.author.id;
 
-  if (message.content === '.sybau') {
-    const responses = TARGET_IDS.map(id => {
-      const userData = data[id] ?? { count: 0, date: getTodayDateStr() };
-      const left = messagesLeft(userData);
-      return `${data[id]?.username} has ${left} messages left today, what a fucking bitch`;
-    });
-    message.channel.send(responses.join('\n'));
-    return;
+if (message.content === '.sybau') {
+  const responses = [];
+
+  for (const id of TARGET_IDS) {
+    let username = `<@${id}>`;
+    let userData = data[id];
+
+    try {
+      const member = await message.guild.members.fetch(id);
+      username = member.user.username;
+    } catch (err) {
+      console.warn(`Could not fetch member for ID ${id}`);
+    }
+
+    if (!userData) {
+      userData = {
+        username,
+        count: 0,
+        date: getTodayDateStr(),
+        timeoutUntil: 0
+      };
+      data[id] = userData;
+    }
+
+    const left = messagesLeft(userData);
+    responses.push(`${username} has ${left} messages left today, what a fucking bitch`);
   }
+
+  message.channel.send(responses.join('\n'));
+  return;
+}
+
 
   if (!TARGET_IDS.includes(userId)) return;
 
