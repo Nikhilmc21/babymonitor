@@ -13,7 +13,7 @@ const TARGET_IDS = [
   "957890900107862036",
 ];
 
-const MAX_MESSAGES = 200;
+const MAX_MESSAGES = 50;
 
 function getTodayDateStr() {
   return new Date().toISOString().slice(0, 10);
