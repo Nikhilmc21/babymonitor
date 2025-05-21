@@ -8,7 +8,7 @@ const __dirname = dirname(__filename);
 const dataFile = join(__dirname, '../data/messageCounts.json');
 
 const TARGET_ID = "1266013123782115368";
-const MAX_MESSAGES = 100;
+const MAX_MESSAGES = 300;
 
 function getTodayDateStr() {
   return new Date().toISOString().slice(0, 10);
