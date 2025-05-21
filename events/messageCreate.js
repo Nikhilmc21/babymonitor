@@ -56,7 +56,7 @@ export async function execute(message) {
 
   if (!data[userId]) {
     data[userId] = {
-      username: message.author.tag,
+      username: message.author.usename,
       count: 0,
       date: getTodayDateStr(),
       timeoutUntil: 0
