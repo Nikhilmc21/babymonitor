@@ -10,6 +10,7 @@ const dataFile = join(__dirname, '../data/messageCounts.json');
 const TARGET_IDS = [
   "1266013123782115368",
   "1060049330733600868",
+  "957890900107862036",
 ];
 
 const MAX_MESSAGES = 200;
@@ -45,7 +46,7 @@ export async function execute(message) {
     const responses = TARGET_IDS.map(id => {
       const userData = data[id] ?? { count: 0, date: getTodayDateStr() };
       const left = messagesLeft(userData);
-      return `<@${id}> has ${left} messages left today, what a bitch`;
+      return `${data[id]?.username || `User ${id}`} has ${left} messages left today, what a fucking bitch`;
     });
     message.channel.send(responses.join('\n'));
     return;
@@ -83,7 +84,7 @@ export async function execute(message) {
 
   if (userData.count % 20 === 0 && userData.count < MAX_MESSAGES) {
     message.channel.send(
-      `${message.author.username} has sent ${userData.count} messages today they got ${MAX_MESSAGES - userData.count} donkey`
+      `${message.author.username} has sent ${userData.count} messages today they got ${MAX_MESSAGES - userData.count} left donkey`
     );
   }
 
