@@ -8,7 +8,7 @@ const __dirname = dirname(__filename);
 const dataFile = join(__dirname, '../data/messageCounts.json');
 
 const TARGET_ID = "1266013123782115368";
-const MAX_MESSAGES = 300;
+const MAX_MESSAGES = 100;
 
 function getTodayDateStr() {
   return new Date().toISOString().slice(0, 10);
@@ -39,7 +39,7 @@ export async function execute(message) {
     data = JSON.parse(readFileSync(dataFile, 'utf8'));
   }
 
-  if (message.content === '.mm') {
+  if (message.content === '.sybau') {
     const left = messagesLeft(data);
     message.channel.send(`hav has ${left} messages left for today lmao loser`);
     return;
